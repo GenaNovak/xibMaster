@@ -64,15 +64,12 @@ func writeErrors(filesPathsWithError errors : [String]){
         let outputPath = CommandLine.arguments[2]
         let fullPath = "\(outputPath)/\(outputName)"
         
-        //        let fileManager = FileManager.default
-        
-        for errorTxt in errors{
-            do {
-                try errorTxt.write(toFile: fullPath, atomically: false, encoding: .utf8)
-            }
-            catch{
-                print(error.localizedDescription)
-            }
+        let errorText = errors.joined(separator: "\n")
+        do {
+            try errorText.write(toFile: fullPath, atomically: false, encoding: .utf8)
+        }
+        catch{
+            print(error.localizedDescription)
         }
         
         
